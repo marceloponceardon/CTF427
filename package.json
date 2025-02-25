@@ -1,0 +1,26 @@
+{
+  "name": "ctf427",
+  "version": "1.0.0",
+  "description": "- by Mars Ponce & Haashir Khan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marceloponceardon/CTF427.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/marceloponceardon/CTF427/issues"
+  },
+  "homepage": "https://github.com/marceloponceardon/CTF427#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.3"
+  }
+}

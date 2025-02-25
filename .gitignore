@@ -1,0 +1,10 @@
+# Ignore dependencies
+node_modules/
+package-lock.json
+
+# Ignore environment variables
+.env
+
+# Ignore OS & editor files
+.DS_Store
+*.log
