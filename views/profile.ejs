@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Profile - <%= user.username %></title>
+	<link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+	<div class="container">
+		<div class="navbar">
+			<span><a href="/dashboard">🏠 Dashboard</a></span>
+			<span>
+				<a href="/logout">Logout</a>
+			</span>
+		</div>
+
+		<h1>Profile</h1>
+		<div class="profile-card">
+			<h2>@<%= user.username %></h2>
+			<p><strong>Email:</strong> <%= user.email %></p>
+			<p><strong>Joined:</strong> <%= user.joinedDate %></p>
+			<p><strong>Threads Created:</strong> 8</p>
+			<p><strong>Replies Posted:</strong> 24</p>
+
+			<h3>Update Profile</h3>
+			<form action="/update-profile" method="POST">
+				<label for="email">New Email:</label>
+				<input type="email" id="email" name="email" placeholder="Enter new email" required>
+
+				<label for="password">New Password:</label>
+				<input type="password" id="password" name="password" placeholder="Enter new password">
+
+				<button type="submit">Update</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Forum Dashboard</title>
+	<link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+	<div class="container">
+		<div class="navbar">
+			<span>Welcome, <%= user.username %>!</span>
+			<span>
+				<a href="/profile">Profile</a>
+				<a href="/logout">Logout</a>
+			</span>
+		</div>
+
+		<h1>Forum Dashboard</h1>
+		<p>Here are the latest discussion threads:</p>
+
+		<div class="thread">
+			<h3>🚀 How to Get Started with Express.js?</h3>
+			<p>Posted by <strong>alice</strong> | 3 replies</p>
+		</div>
+
+		<div class="thread">
+			<h3>💬 Best Resources to Learn Node.js?</h3>
+			<p>Posted by <strong>bob</strong> | 5 replies</p>
+		</div>
+
+		<div class="thread">
+			<h3>🔒 SQL Injection Examples in CTF Challenges</h3>
+			<p>Posted by <strong>charlie</strong> | 2 replies</p>
+		</div>
+
+		<div class="thread">
+			<h3>🛠️ Debugging Express Routes Efficiently</h3>
+			<p>Posted by <strong>dave</strong> | 1 reply</p>
+		</div>
+
+		<p><a href="#">➕ Start a new discussion</a></p>
+	</div>
+</body>
+</html>

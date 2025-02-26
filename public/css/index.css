@@ -1,0 +1,66 @@
+/* Global Styles */
+body {
+	font-family: Iosevka, sans-serif;
+	margin: 0;
+	padding: 20px;
+	background-color: #f4f4f4;
+}
+
+/* Container */
+.container {
+	max-width: 800px;
+	margin: auto;
+	background: white;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Bar */
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	background: #007bff;
+	padding: 10px;
+	color: white;
+	border-radius: 5px;
+}
+
+.navbar a {
+	color: white;
+	text-decoration: none;
+	margin: 0 10px;
+}
+
+.navbar a:hover {
+	text-decoration: underline;
+}
+
+/* Forum Threads */
+.thread {
+	background: #fff;
+	padding: 10px;
+	margin: 10px 0;
+	border-radius: 5px;
+	border-left: 5px solid #007bff;
+}
+
+.thread h3 {
+	margin: 0;
+}
+
+.thread p {
+	color: #666;
+	margin: 5px 0 0;
+}
+
+/* Links */
+a {
+	color: #007bff;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+

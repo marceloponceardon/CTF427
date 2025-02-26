@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "run": "node server.js",
-		"dev": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/marceloponceardon/CTF427#readme",
   "dependencies": {
     "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "md5": "^2.3.0",

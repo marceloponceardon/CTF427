@@ -3,6 +3,7 @@ const pg = require("pg");
 const path = require("path");
 const md5 = require("md5");
 const session = require("express-session");
+const ejs = require("ejs");
 
 require("dotenv").config();
 
@@ -24,8 +25,12 @@ pool.connect().then(client => {
 
 const app = express();
 
+// ejs
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 // public
 app.use(express.static(path.join(__dirname, "public")));
+
 // sessions
 app.use(session({
 	secret: process.env.SESSION_SECRET,
@@ -36,15 +41,33 @@ app.use(session({
 // body parser
 app.use(express.urlencoded({ extended: true }));
 
+// middleware
+// auth
+function auth(req, res, next) {
+	if (req.session.auth) {
+		next();
+	} else {
+		res.status(401).send("Unauthorized 😡. Please <a href='/login'>login</a> first.");
+	}
+}
+// logger
+app.use((req, res, next) => {
+	console.log(req.method, req.url);
+	next();
+});
+
+// routes
+// home
 app.get("/", (req, res) => {
 	res.sendFile(__dirname + "/views/index.html");
 });
 
+// login
 app.get("/login", (req, res) => {
 	res.sendFile(__dirname + "/views/login.html");
 });
 
-// Vulnerable login code
+// vulnerable login
 app.post("/login", async (req, res) => {
 	const { username, password } = req.body;
 	// Use an easily breakable hash function
@@ -54,16 +77,33 @@ app.post("/login", async (req, res) => {
 	// Execute the query
 	console.log("Query:", query);
 	// TODO: Actually do the query
-	
+
+	// On success store info in session
+	req.session.auth = true;
+	req.session.user = {
+		username: username,
+		id: 0
+	};
+
+	console.log("User: ", req.session.user.username, "authenticated");
+	res.redirect("/dashboard");
 });
 
-function auth(req, res, next) {
-	if (req.session.auth) {
-		next();
-	} else {
-		res.status(401).send("Unauthorized >:(. Please <a href='/login'>login</a> first.");
-	}
-}
+// dashboard
+app.get("/dashboard", auth, (req, res) => {
+	res.render("dashboard", { user: req.session.user });
+});
+
+// profile
+app.get("/profile", auth, (req, res) => {
+	res.render("profile", { user: req.session.user });
+});
+
+// logout
+app.post("/logout", (req, res) => {
+	req.session.destroy();
+	res.redirect("/");
+});
 
 const port = process.env.PORT || 3000;
 // TODO: Change this if we want more hints to be around
