@@ -11,6 +11,9 @@
 		<div class="navbar">
 			<span>Welcome, <%= user.username %>!</span>
 			<span>
+				<% if (user && user.isAdmin) { %>
+					<a href="/admin">🔧 Admin Panel</a>
+        <% } %>
 				<a href="/profile">Profile</a>
 				<a href="/logout">Logout</a>
 			</span>
@@ -19,23 +22,24 @@
 		<h1>Forum Dashboard</h1>
 		<p>Here are the latest discussion threads:</p>
 
+		<!-- Hacker Forum Threads -->
 		<div class="thread">
-			<h3>🚀 How to Get Started with Express.js?</h3>
+			<h3>🔥 How to Hack the NSA</h3>
 			<p>Posted by <strong>alice</strong> | 3 replies</p>
 		</div>
 
 		<div class="thread">
-			<h3>💬 Best Resources to Learn Node.js?</h3>
+			<h3>🔓 Breaking into the FBI Database</h3>
 			<p>Posted by <strong>bob</strong> | 5 replies</p>
 		</div>
 
 		<div class="thread">
-			<h3>🔒 SQL Injection Examples in CTF Challenges</h3>
+			<h3>🔑 Stealing Bitcoin from the Dark Web</h3>
 			<p>Posted by <strong>charlie</strong> | 2 replies</p>
 		</div>
 
 		<div class="thread">
-			<h3>🛠️ Debugging Express Routes Efficiently</h3>
+			<h3>🕵️‍♂️ How to Stay Anonymous Online</h3>
 			<p>Posted by <strong>dave</strong> | 1 reply</p>
 		</div>
 

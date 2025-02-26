@@ -47,7 +47,7 @@ function auth(req, res, next) {
 	if (req.session.auth) {
 		next();
 	} else {
-		res.status(401).send("Unauthorized 😡. Please <a href='/login'>login</a> first.");
+		res.status(401).sendFile(__dirname + "/views/unauthorized.html");
 	}
 }
 // logger
@@ -82,6 +82,7 @@ app.post("/login", async (req, res) => {
 	req.session.auth = true;
 	req.session.user = {
 		username: username,
+		isAdmin: username === "admin",
 		id: 0
 	};
 
@@ -100,9 +101,9 @@ app.get("/profile", auth, (req, res) => {
 });
 
 // logout
-app.post("/logout", (req, res) => {
+app.get("/logout", (req, res) => {
 	req.session.destroy();
-	res.redirect("/");
+	res.render("logout");
 });
 
 const port = process.env.PORT || 3000;
