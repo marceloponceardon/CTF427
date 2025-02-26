@@ -1,6 +1,5 @@
 const express = require("express");
 const client = require("./db");
-const md5 = require("md5");
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -17,10 +16,21 @@ app.get("/login", (req, res) => {
 app.post("/login", async (req, res) => {
 	const { username, password } = req.body;
 	// Use an easily breakable hash function
-	const password_hashed = md5(password);
+	const password_hashed = password;
 	const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password_hashed}'`;
 	console.log(query);
 });
 
-const port = 3000;
-app.listen(port, () => console.log(`Hacker forum running on port '${port}'`));
+const port = 80;
+// TODO: Change this if we want more hints to be around
+if (process.env.NODE_ENV === 'production') {
+	console.log('Production Mode');
+	console.error = () => {};
+	console.debug = () => {};
+	port = 8080;
+} else {
+	console.log('Development Mode');
+	console.log('.env', process.env);
+}
+
+app.listen(port, () => console.log(`Running on port '${port}'`));
