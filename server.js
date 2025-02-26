@@ -1,9 +1,26 @@
 const express = require("express");
+const pg = require("pg");
 const path = require("path");
 const md5 = require("md5");
 const session = require("express-session");
 
-const client = require("./db");
+require("dotenv").config();
+
+// database
+const pool = new pg.Pool({
+	user: process.env.DB_USER,
+	password: process.env.DB_PASS,
+	host: process.env.DB_HOST,
+	database: process.env.DB_NAME,
+	port: 5432
+});
+
+pool.connect().then(client => {
+	console.log("Connected to database");
+	client.release();
+}).catch(err => {
+	console.error("Error connecting to database", err);
+});
 
 const app = express();
 
@@ -11,7 +28,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 // sessions
 app.use(session({
-	secret: process.env.SESSION_SECRET || "super-secret",
+	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: true,
 	cookie: { secure: process.env.NODE_ENV === 'production' }
@@ -57,7 +74,13 @@ if (process.env.NODE_ENV === 'production') {
 	port = 8080;
 } else {
 	console.log('Development Mode');
-	console.log('.env', process.env);
+	console.log('.env:',
+		process.env.SESSION_SECRET,
+		process.env.DB_USER,
+		process.env.DB_PASS,
+		process.env.DB_HOST,
+		process.env.DB_NAME
+	);
 }
 
 app.listen(port, () => console.log(`Running on port '${port}'`));
