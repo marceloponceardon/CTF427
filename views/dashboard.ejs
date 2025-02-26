@@ -9,6 +9,7 @@
 <body>
 	<div class="container">
 		<div class="navbar">
+			<span class=devil>😈</span>
 			<span>Welcome, <%= user.username %>!</span>
 			<span>
 				<% if (user && user.isAdmin) { %>
@@ -42,6 +43,14 @@
 			<h3>🕵️‍♂️ How to Stay Anonymous Online</h3>
 			<p>Posted by <strong>dave</strong> | 1 reply</p>
 		</div>
+
+		<!-- admin only thread -->
+		<% if (user && user.isAdmin) { %>
+			<div class="admin-panel">
+				<h3>🔒 How to Secure Your Server</h3>
+				<p>Posted by <strong>admin</strong> | 0 replies</p>
+			</div>
+		<% } %>
 
 		<p><a href="#">➕ Start a new discussion</a></p>
 	</div>

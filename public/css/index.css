@@ -1,6 +1,6 @@
 /* Global Styles */
 body {
-	font-family: Iosevka, sans-serif;
+	font-family: Iosevka, Arial, sans-serif;
 	margin: 0;
 	padding: 20px;
 	background-color: #f4f4f4;
@@ -16,6 +16,14 @@ body {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Images */
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: auto;
+	margin-right: 0;
+}
 /* Navigation Bar */
 .navbar {
 	display: flex;
@@ -24,6 +32,9 @@ body {
 	padding: 10px;
 	color: white;
 	border-radius: 5px;
+}
+
+.navbar devil {
 }
 
 .navbar a {
@@ -64,3 +75,14 @@ a:hover {
 	text-decoration: underline;
 }
 
+/* Admin Panel Styling */
+.admin-panel {
+	background: #fff;
+	padding: 20px;
+	border-left: 5px solid red;
+	box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+	margin-top: 20px;
+}
+.admin-panel h2 {
+	color: red;
+}

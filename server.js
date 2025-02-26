@@ -67,6 +67,11 @@ app.get("/login", (req, res) => {
 	res.sendFile(__dirname + "/views/login.html");
 });
 
+// register
+app.get("/register", (req, res) => {
+	res.sendFile(__dirname + "/views/register.html");
+});
+
 // vulnerable login
 app.post("/login", async (req, res) => {
 	const { username, password } = req.body;
@@ -83,7 +88,8 @@ app.post("/login", async (req, res) => {
 	req.session.user = {
 		username: username,
 		isAdmin: username === "admin",
-		id: 0
+		email: `${username}@hackers.org`,
+		joinedDate: new Date().toDateString()
 	};
 
 	console.log("User: ", req.session.user.username, "authenticated");
