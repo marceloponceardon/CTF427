@@ -17,6 +17,7 @@ const pool = new pg.Pool({
 	port: 5432
 });
 
+// Test connection
 pool.connect().then(client => {
 	console.log("Connected to database");
 	client.release();
@@ -39,6 +40,7 @@ app.use(session({
 	saveUninitialized: true,
 	cookie: { secure: process.env.NODE_ENV === 'production' }
 }));
+
 // body parser
 app.use(express.urlencoded({ extended: true }));
 
@@ -82,27 +84,45 @@ app.get("/register", (req, res) => {
 });
 
 // vulnerable login
-app.post("/login", async (req, res) => {
-	const { username, password } = req.body;
-	// Use an easily breakable hash function
-	const password_hashed = md5(password);
-	const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password_hashed}'`;
-
-	// Execute the query
-	console.log("Query:", query);
-	// TODO: Actually do the query
-
-	// On success store info in session
-	req.session.auth = true;
-	req.session.user = {
-		username: username,
-		isAdmin: username === "admin",
-		email: `${username}@hackers.org`,
-		joinedDate: new Date().toDateString()
-	};
-
-	console.log("User: ", req.session.user.username, "authenticated");
-	res.redirect("/dashboard");
+app.post("/login", async (req, res, next) => {
+	try {
+		const { username, password } = req.body;
+		// Use an easily breakable hash function
+		const password_hashed = md5(password);
+		const query = `SELECT * FROM users WHERE username = '${username}' AND password_hashed = '${password_hashed}'`;
+		// Execute the query
+		console.log("Query:", query);
+		const result = await pool.query(query);
+	
+		if (result.rows.length === 0) {
+			console.log("User: ", username, "failed to authenticate");
+			res.status(401).sendFile(__dirname + "/views/unauthorized.html");
+			return;
+		}
+	
+		// Otherwise, extract username and id from the result
+		const { id } = result.rows[0];
+	
+		// Check if user is an admin
+		const admin_query = `SELECT * FROM admins WHERE user_id = ${id}`;
+		const admin_result = await pool.query(admin_query);
+		const isAdmin = admin_result.rows.length > 0;
+	
+		// On success store info in session
+		req.session.auth = true;
+		req.session.user = {
+			username: username,
+			isAdmin: isAdmin,
+			email: `${username}@h4ck3rs.evil`,
+			joinedDate: new Date().toDateString()
+		};
+	
+		console.log("User: ", req.session.user.username, "authenticated");
+		res.redirect("/dashboard");
+	} catch (err) {
+		// Handle error with the error handler middleware
+		next(err);
+	}
 });
 
 // dashboard
@@ -175,4 +195,11 @@ if (process.env.NODE_ENV === 'production') {
 	);
 }
 
-app.listen(port, () => console.log(`Running on port '${port}'`));
+// error handler
+app.use((err, req, res, next) => {
+	console.error(err.stack);
+	console.log("Error encountered! Redirecting to error page");
+	res.status(500).render("error", { error: err });
+});
+
+app.listen(port, '0.0.0.0', () => console.log(`Running on port '${port}'`));
