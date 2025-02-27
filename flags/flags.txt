@@ -1,0 +1,27 @@
+FLAG 1:
+	- notice that the username field of the login form is vulnerable to SQL injection
+	- run sqlmap to dump the database
+	- notice that the password field is hashed, so crack the hash using john
+	- login to the admin page using the cracked password
+	-> valid flags:
+		:(username, password)
+		- admin, scriptkiddie
+		- feeney, poohbear
+		- west, anthony1
+		- kohler, mahalko
+		- rath, 696969
+
+FLAG 2:
+	- find logs.log.gpg in `/admin`
+	- using gpg2john, extract the hash 
+	- crack the hash using john
+	- decrypt the file using the password
+	-> valid flags:
+		- apple
+
+FLAG 3:
+	- search through the cracked logs.log file for a conversation between the admins
+	- notice that they mention `ae13.exe`
+	- download `ae13.exe` from `/admin`
+	- run the file and notice it produces bogus output
+	- using BinaryNinja, reverse engineer the file and 
