@@ -4,6 +4,7 @@ const path = require("path");
 const md5 = require("md5");
 const session = require("express-session");
 const ejs = require("ejs");
+const fs = require("fs");
 
 require("dotenv").config();
 
@@ -48,6 +49,14 @@ function auth(req, res, next) {
 		next();
 	} else {
 		res.status(401).sendFile(__dirname + "/views/unauthorized.html");
+	}
+}
+// admin
+function admin(req, res, next) {
+	if (req.session.user.isAdmin) {
+		next();
+	} else {
+		res.status(403).sendFile(__dirname + "/views/unauthorized.html");
 	}
 }
 // logger
@@ -103,13 +112,49 @@ app.get("/dashboard", auth, (req, res) => {
 
 // profile
 app.get("/profile", auth, (req, res) => {
-	res.render("profile", { user: req.session.user });
+	const success = req.session.success;
+	delete req.session.success;
+	res.render("profile", { user: req.session.user, success: success });
+});
+
+// update profile
+app.post("/profile/update", auth, (req, res) => {
+	// Should just do a javascript alert
+	req.session.success = "Profile updating is not available at this time due to a database security issue.";
+	res.redirect("/profile");
 });
 
 // logout
 app.get("/logout", (req, res) => {
 	req.session.destroy();
 	res.render("logout");
+});
+
+// admin
+app.get("/admin",	auth, admin, (req, res) => {
+	const uploadDir = path.join(__dirname, "uploads");
+	fs.readdir(uploadDir, (err, files) => {
+		if (err) {
+			console.error(err);
+			res.status(500).send("Internal Server Error");
+		}
+		res.render("admin", { 
+			user: req.session.user,
+			files: files
+		});
+	});
+});
+
+// download
+app.get("/download/:file", auth, admin, (req, res) => {
+	const filename = req.params.file;
+	const filePath = path.join(__dirname, "uploads", filename);
+
+	if (fs.existsSync(filePath)) {
+		res.download(filePath, filename);
+	} else {
+		res.status(404).send("File not found");
+	}
 });
 
 const port = process.env.PORT || 3000;

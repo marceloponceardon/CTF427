@@ -13,7 +13,7 @@
 			<span>Welcome, <%= user.username %>!</span>
 			<span>
 				<% if (user && user.isAdmin) { %>
-					<a href="/admin">🔧 Admin Panel</a>
+					<a href="/admin">Admin Dashboard</a>
         <% } %>
 				<a href="/profile">Profile</a>
 				<a href="/logout">Logout</a>
@@ -44,10 +44,14 @@
 			<p>Posted by <strong>dave</strong> | 1 reply</p>
 		</div>
 
-		<!-- admin only thread -->
+		<div class="thread">
+			<h3>🕵️ Protocol for meeting Admins</h3>
+			<p>Posted by <strong>admin</strong> | 0 replies</p>
+		</div>
+
 		<% if (user && user.isAdmin) { %>
 			<div class="admin-panel">
-				<h3>🔒 How to Secure Your Server</h3>
+				<h3>❗ IMPORTANT: Server Security Alert</h3>
 				<p>Posted by <strong>admin</strong> | 0 replies</p>
 			</div>
 		<% } %>

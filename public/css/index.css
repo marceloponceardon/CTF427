@@ -78,11 +78,49 @@ a:hover {
 /* Admin Panel Styling */
 .admin-panel {
 	background: #fff;
-	padding: 20px;
+	padding: 12px;
 	border-left: 5px solid red;
 	box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
 	margin-top: 20px;
 }
 .admin-panel h2 {
 	color: red;
+}
+
+.file-list {
+    max-height: 300px; /* Limit height */
+    overflow-y: auto; /* Enable scrolling */
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: #f9f9f9;
+}
+
+.file-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.file-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.file-list li:last-child {
+    border-bottom: none;
+}
+
+.file-list a.btn {
+    padding: 5px 10px;
+    background: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.file-list a.btn:hover {
+    background: #0056b3;
 }

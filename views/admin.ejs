@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - File Manager</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+
+    <div class="container">
+			<div class="navbar">
+				<span class=devil>😈</span>
+				<span>/admin</span>
+				<span>
+					<a href="/dashboard">🏠 Dashboard</a>
+					<a href="/profile">Profile</a>
+					<a href="/logout">Logout</a>
+				</span>
+			</div>
+        <h1>Admin Storage</h1>
+        <div class="file-list">
+            <% if (files.length === 0) { %>
+                <p>No files available for download.</p>
+            <% } else { %>
+                <ul>
+                    <% files.forEach(file => { %>
+                        <li>
+                            <span><%= file %></span>
+                            <a href="/download/<%= file %>" class="btn">Download</a>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
