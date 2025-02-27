@@ -28,7 +28,7 @@ img {
 .navbar {
 	display: flex;
 	justify-content: space-between;
-	background: #007bff;
+	background: #553986; 
 	padding: 10px;
 	color: white;
 	border-radius: 5px;
@@ -53,7 +53,8 @@ img {
 	padding: 10px;
 	margin: 10px 0;
 	border-radius: 5px;
-	border-left: 5px solid #007bff;
+	border-left: 5px solid #553986;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .thread h3 {
@@ -115,12 +116,12 @@ a:hover {
 
 .file-list a.btn {
     padding: 5px 10px;
-    background: #007bff;
+    background: #553986;
     color: #fff;
     text-decoration: none;
     border-radius: 3px;
 }
 
 .file-list a.btn:hover {
-    background: #0056b3;
+    background: #553986;
 }
