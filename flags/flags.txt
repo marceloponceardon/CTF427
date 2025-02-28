@@ -24,13 +24,12 @@ FLAG 3:
 	- notice that they mention `ae13.exe`
 	- download `ae13.exe` from `/admin`
 	- run the file and notice it produces bogus output
-	- using BinaryNinja, reverse engineer the file to get the next flag
+	- using BinaryNinja, find the flag hidden in the binary
 	-> valid flags:
 		- vulnerabilities_are_c00l
 
 FLAG 4:
-	- final flag is hidden in the favicon of the website
-	- download the favicon and extract the flag
-	- steghide is used to extract the flag
+	- final flag is hidden in the headers of the `h4ckers.png` image displayed at / and /login
+	- download the image and extract the flag using exiftool or any other tool
 	-> valid flags:
-		- flag{th4ts_4ll_f0lks!}
+		- th4ts_4ll_f0lks!

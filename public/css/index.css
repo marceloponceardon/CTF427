@@ -1,6 +1,6 @@
 /* Global Styles */
 body {
-	font-family: Iosevka, Arial, sans-serif;
+	font-family: monospace;
 	margin: 0;
 	padding: 20px;
 	background-color: #f4f4f4;
@@ -16,13 +16,14 @@ body {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.container .half {
+	display: flex;
+}
+
 /* Images */
 img {
-	max-width: 100%;
-	height: auto;
 	display: block;
 	margin: auto;
-	margin-right: 0;
 }
 /* Navigation Bar */
 .navbar {
@@ -34,7 +35,10 @@ img {
 	border-radius: 5px;
 }
 
-.navbar devil {
+/* Logo */
+.devil {
+	font-size: 1.25em;
+	margin: 0.1em;
 }
 
 .navbar a {
