@@ -17,7 +17,7 @@ FLAG 2:
 	- crack the hash using john
 	- decrypt the file using the password
 	-> valid flags:
-		- apple
+		- h4ck3rz
 
 FLAG 3:
 	- search through the cracked logs.log file for a conversation between the admins
@@ -35,4 +35,4 @@ FLAG 4:
 	- final flag is hidden in `/img/devil.jpeg`
 	- download the image and extract the flag using steghide with the password `h4ck3rz`
 	-> valid flags:
-		- th4ts_4ll_f0lks!
+		- flag{th4ts_4ll_f0lks}

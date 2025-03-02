@@ -10,10 +10,10 @@ int foo(int x) {
 
 int main() {
     int result = foo(1000);
-    printf("INFO: %d", result);
+    printf("INFO: %d ", result);
     result = foo(result);
-    printf("INFO: %d", result);
+    printf("INFO: %d ", result);
     result = foo(result);
-    printf("INFO: %d", result);
+    printf("INFO: %d\n", result);
     return 0;
 }
