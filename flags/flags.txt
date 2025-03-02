@@ -29,7 +29,10 @@ FLAG 3:
 		- vulnerabilities_are_c00l
 
 FLAG 4:
-	- final flag is hidden in the headers of the `h4ckers.png` image displayed at / and /login
-	- download the image and extract the flag using exiftool or any other tool
+	- prompt to check the html of the root page
+	- notice the comment `<!-- I wonder what the password is? -->`
+	- check the source code of the profile page to find the password `h4ck3rz` in a comment
+	- final flag is hidden in `/img/devil.jpeg`
+	- download the image and extract the flag using steghide with the password `h4ck3rz`
 	-> valid flags:
 		- th4ts_4ll_f0lks!

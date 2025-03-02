@@ -63,7 +63,7 @@ function admin(req, res, next) {
 }
 // logger
 app.use((req, res, next) => {
-	console.log(req.method, req.url);
+	console.log(res.statusCode, req.method, req.url);
 	next();
 });
 
@@ -128,6 +128,12 @@ app.post("/login", async (req, res, next) => {
 // dashboard
 app.get("/dashboard", auth, (req, res) => {
 	res.render("dashboard", { user: req.session.user });
+});
+
+app.post("/dashboard/new", auth, (req, res) => {
+	// success and don't do navigate away
+	req.session.success = "Successfully created a new post!";
+	res.redirect("/dashboard");
 });
 
 // profile

@@ -20,10 +20,17 @@ body {
 	display: flex;
 }
 
+.img-container {
+	display: block;
+	text-align: right;
+	background: white;
+}
+
 /* Images */
 img {
-	display: block;
-	margin: auto;
+	display: inline;
+	/* Make the image's black background transparent */
+	mix-blend-mode: difference;
 }
 /* Navigation Bar */
 .navbar {
