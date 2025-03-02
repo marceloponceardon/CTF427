@@ -9,7 +9,7 @@ void secret_function() {
 }
 
 void vulnerable_function(char *input) {
-	char buffer[64]; // Buffer that can hold 64 bytes
+	char buffer[8]; // Buffer that can hold 64 bytes
 	strcpy(buffer, input); // Vulnerable to buffer overflow
 }
 

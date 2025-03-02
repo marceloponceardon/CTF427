@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+void secret() {
+	printf("You found the secret function!\n");
+	printf("It wasn't necessary to find it, but you did it!\n");
+}
+
 int main() {
 	int num1, num2;
 	char operator;
