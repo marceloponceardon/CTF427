@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -g -fno-stack-protector -z execstack -no-pie  # Vulnerable flags for exploitation
+CFLAGS = -fno-stack-protector -z execstack -no-pie  # Vulnerable flags for exploitation
 
 # List of source files to compile
 SOURCES = ae13.c aa14.c bb10.c cc20.c dd34.c fhg99.c iii.c tuv.c zzyy.c
