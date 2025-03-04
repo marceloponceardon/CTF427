@@ -6,8 +6,15 @@ _This repository holds the vulnerable "hacker forum" that will be used in the we
 ## Setup
 
 - Ensure that a PostgreSQL server is available and running
-- Enter the values for the database connection in `.env`
-- See `.env.example` for an example of the required values
-- Run `npm install` to install the required dependencies
-- Run `npm run start` to start the server
-- Run `npm run dev` to start the server in development mode
+- Enter it's values into `.env` (see `.env.example`)
+- To run the site, there are two options:
+    - Dockerized:
+        - create the container with:
+```bash
+docker build -t ctf-427 .
+```
+        - run the container and make sure to expose the relevant ports:
+```
+docker run -d --restart unless-stopped --env-file .env -p 3000:3000 --name hacker-forum ctf-427
+```
+    - Normal:
