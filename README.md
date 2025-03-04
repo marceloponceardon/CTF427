@@ -18,3 +18,5 @@ docker build -t ctf-427 .
 docker run -d --restart unless-stopped --env-file .env -p 3000:3000 --name hacker-forum ctf-427
 ```
     - Normal:
+        - `npm run start`
+        - `npm rund dev` (development mode with nodemon)
