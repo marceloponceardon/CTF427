@@ -185,7 +185,6 @@ app.get("/download/:file", auth, admin, (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-// TODO: Change this if we want more hints to be around
 if (process.env.NODE_ENV === 'production') {
 	console.log('Production Mode');
 	console.error = () => {};
