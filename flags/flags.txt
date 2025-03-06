@@ -30,8 +30,8 @@ FLAG 3:
 
 FLAG 4:
 	- prompt to check the html of the root page
-	- notice the comment `<!-- I wonder what the password is? -->`
-	- check the source code of the profile page to find the password `h4ck3rz` in a comment
+	- notice the comments `<!-- >:D -->` on `/` and `/profile`
+	- check the source of the profile page to find the password `h4ck3rz` in a comment
 	- final flag is hidden in `/img/devil.jpeg`
 	- download the image and extract the flag using steghide with the password `h4ck3rz`
 	-> valid flags:
