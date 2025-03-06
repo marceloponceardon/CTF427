@@ -6,6 +6,7 @@ _This repository holds the vulnerable "hacker forum" that will be used in the we
 ## Setup
 
 - Ensure that a PostgreSQL server is available and running
+    - A sample Postgres docker command exists in `/sql/start.sh`
 - Enter it's values into `.env` (see `.env.example`)
 - To run the site, there are two options:
     - Dockerized:
